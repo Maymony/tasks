@@ -1,6 +1,45 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
+type Celebration = "🎇" | "👻" | "🦃" | "🎊" | "💘";
+
+const alphabetStep: Record<Celebration, Celebration> = {
+    "🎊": "💘", // New Year -> Valentine's Day
+    "💘": "👻", // Valentine's Day -> Halloween
+    "👻": "🎇", // Halloween -> Independence Day
+    "🎇": "🦃", // Independence Day -> Thanksgiving
+    "🦃": "🎊", // Thanksgiving -> New Year
+};
+
+const calendarStep: Record<Celebration, Celebration> = {
+    "🎊": "💘", // New Year -> Valentine's Day
+    "💘": "🎇", // Valentine's Day -> Independence Day
+    "🎇": "👻", // Independence Day -> Halloween
+    "👻": "🦃", // Halloween -> Thanksgiving
+    "🦃": "🎊", // Thanksgiving -> New Year
+};
+
 export function CycleHoliday(): React.JSX.Element {
-    return <div>Cycle Holiday</div>;
+    const [currentCelebration, setCurrentCelebration] =
+        useState<Celebration>("🎊");
+
+    return (
+        <div>
+            <div>Holiday: {currentCelebration}</div>
+            <Button
+                onClick={() => {
+                    setCurrentCelebration(alphabetStep[currentCelebration]);
+                }}
+            >
+                Move by Alphabet
+            </Button>
+            <Button
+                onClick={() => {
+                    setCurrentCelebration(calendarStep[currentCelebration]);
+                }}
+            >
+                Move by Year
+            </Button>
+        </div>
+    );
 }
