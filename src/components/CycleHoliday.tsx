@@ -4,11 +4,11 @@ import { Button } from "react-bootstrap";
 type Celebration = "🎇" | "👻" | "🦃" | "🎊" | "💘";
 
 const alphabetStep: Record<Celebration, Celebration> = {
-    "🎊": "💘", // New Year -> Valentine's Day
-    "💘": "👻", // Valentine's Day -> Halloween
     "👻": "🎇", // Halloween -> Independence Day
-    "🎇": "🦃", // Independence Day -> Thanksgiving
-    "🦃": "🎊", // Thanksgiving -> New Year
+    "🎇": "🎊", // Independence Day -> New Year
+    "🎊": "🦃", // New Year -> Thanksgiving
+    "🦃": "💘", // Thanksgiving -> Valentine's Day
+    "💘": "👻", // Valentine's Day -> Halloween
 };
 
 const calendarStep: Record<Celebration, Celebration> = {
