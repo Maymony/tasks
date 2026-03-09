@@ -264,14 +264,15 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number,
 ): Question[] {
-    const result: Question[] = [];
-
-    for (const question of questions) {
-        result.push(question);
-        if (question.id === targetId) {
-            result.push(duplicateQuestion(newId, question));
-        }
-    }
-
-    return result;
+    return questions.reduce(
+        (updatedQuestions: Question[], question: Question): Question[] =>
+            question.id === targetId ?
+                [
+                    ...updatedQuestions,
+                    question,
+                    duplicateQuestion(newId, question),
+                ]
+            :   [...updatedQuestions, question],
+        [],
+    );
 }
