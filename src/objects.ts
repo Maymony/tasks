@@ -118,8 +118,9 @@ export function publishQuestion(question: Question): Question {
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
     return {
         ...oldQuestion,
-        id: id,
+        id,
         name: "Copy of " + oldQuestion.name,
+        options: [...oldQuestion.options],
         published: false,
     };
 }
@@ -150,13 +151,13 @@ export function mergeQuestion(
     { points }: { points: number },
 ): Question {
     return {
-        id: id,
-        name: name,
+        id,
+        name,
         body: contentQuestion.body,
         type: contentQuestion.type,
-        options: contentQuestion.options,
+        options: [...contentQuestion.options],
         expected: contentQuestion.expected,
-        points: points,
+        points,
         published: false,
     };
 }
